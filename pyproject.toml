@@ -1,0 +1,10 @@
+[project]
+name = "advent-of-code-2025"
+version = "0.1.0"
+description = "Advent of code puzzle solver"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = []
+
+[tool.ruff.format]
+quote-style = "double"
