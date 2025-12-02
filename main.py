@@ -6,11 +6,9 @@ from pathlib import Path
 import aoclib
 
 
-def main(args: argparse.Namespace):
-    if args.example:
-        puzzle_file = f"day{int(args.day):02d}_example.txt"
-    else:
-        puzzle_file = f"day{int(args.day):02d}_input.txt"
+def main(args: argparse.Namespace) -> None:
+    puzzle_file = f"day{int(args.day):02d}"
+    puzzle_file += "_example.txt" if args.example else "_input.txt"
 
     try:
         puzzle = (Path(__file__).parent / "inputs" / puzzle_file).read_text()
@@ -21,7 +19,7 @@ def main(args: argparse.Namespace):
             sep="\n",
             file=sys.stderr,
         )
-        exit(1)
+        sys.exit(1)
 
     t_start = time.time()
 

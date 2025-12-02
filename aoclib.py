@@ -1,15 +1,15 @@
 import re
 
 
-def day01_part1(input: str):
+def day01_part1(puzzle: str) -> None:
     dial_position = 50
     num_zeroes = 0
 
-    for line in input.splitlines():
-        dir = -1 if line[0] == "L" else 1
-        amt = int(line[1:])
+    for line in puzzle.splitlines():
+        direction = -1 if line[0] == "L" else 1
+        amount = int(line[1:])
 
-        dial_position += dir * amt
+        dial_position += direction * amount
         dial_position %= 100
 
         if dial_position == 0:
@@ -18,16 +18,16 @@ def day01_part1(input: str):
     print("Actual password:", num_zeroes)
 
 
-def day01_part2(input: str):
+def day01_part2(puzzle: str) -> None:
     dial_position = 50
     num_zero_crossings = 0
 
-    for line in input.splitlines():
-        dir = -1 if line[0] == "L" else 1
-        amt = int(line[1:])
+    for line in puzzle.splitlines():
+        direction = -1 if line[0] == "L" else 1
+        amount = int(line[1:])
 
-        for _ in range(amt):
-            dial_position += dir
+        for _ in range(amount):
+            dial_position += direction
             dial_position %= 100
             if dial_position == 0:
                 num_zero_crossings += 1
@@ -42,9 +42,9 @@ def day02_is_invalid_id(num: str) -> bool:
     return num[:midpoint] == num[midpoint:]
 
 
-def day02_part1(input: str):
+def day02_part1(puzzle: str) -> None:
     sum_of_invalid_ids = 0
-    for match in re.finditer(r"(\d+)-(\d+)", input):
+    for match in re.finditer(r"(\d+)-(\d+)", puzzle):
         for num in range(int(match.group(1)), int(match.group(2)) + 1):
             if day02_is_invalid_id(str(num)):
                 sum_of_invalid_ids += num
