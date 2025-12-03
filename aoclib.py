@@ -78,3 +78,22 @@ def day03_part1(puzzle: str) -> None:
         total_joulage += int(arr[max_idx]) * 10 + int(max_after_pos)
 
     print("Total joulage of all batteries:", total_joulage)
+
+
+def day03_part2(puzzle: str) -> None:
+    total_joulage = 0
+
+    for line in puzzle.splitlines():
+        arr = [int(v) for v in line]
+        val = 0
+        prior_max_idx = 0
+        for dig in range(-11, 1):
+            subset = arr[prior_max_idx : (dig if dig < 0 else None)]
+            max_idx = prior_max_idx + subset.index(max(subset))
+            prior_max_idx = max_idx + 1
+            d = int(arr[max_idx])
+            val = 10 * val + int(d)
+
+        total_joulage += val
+
+    print("Total joulage of all batteries:", total_joulage)
