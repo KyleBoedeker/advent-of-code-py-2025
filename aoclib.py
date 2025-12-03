@@ -66,3 +66,15 @@ def day02_part2(puzzle: str) -> None:
                     pass  # snum does not cleanly batch with slize_size
 
     print("Sum of invalid IDs is:", sum_of_invalid_ids)
+
+
+def day03_part1(puzzle: str) -> None:
+    total_joulage = 0
+
+    for line in puzzle.splitlines():
+        arr = [int(v) for v in line]
+        max_idx = arr.index(max(arr[:-1]))
+        max_after_pos = max(arr[max_idx + 1 :])
+        total_joulage += int(arr[max_idx]) * 10 + int(max_after_pos)
+
+    print("Total joulage of all batteries:", total_joulage)

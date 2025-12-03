@@ -31,6 +31,8 @@ def main(args: argparse.Namespace) -> None:
         aoclib.day02_part1(puzzle)
     elif args.day == "2" and args.part == "2":
         aoclib.day02_part2(puzzle)
+    elif args.day == "3" and args.part == "1":
+        aoclib.day03_part1(puzzle)
     else:
         print("unimplemented!", file=sys.stderr)
 
