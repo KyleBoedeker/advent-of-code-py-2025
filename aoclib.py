@@ -126,3 +126,37 @@ def day04_part1(puzzle: str) -> None:
             forklift_accessable_papers += 1
 
     print("Number of rolls of paper accessable via forklift:", forklift_accessable_papers)
+
+
+def day04_part2(puzzle: str) -> None:
+    forklift_accessable_papers = 0
+    prior_forklift_accessable_papers = None
+    map = [[c for c in row] for row in puzzle.splitlines()]
+    ncols, nrows = len(map), len(map[0])
+    while prior_forklift_accessable_papers != forklift_accessable_papers:
+        prior_forklift_accessable_papers = forklift_accessable_papers
+
+        for col, row in itertools.product(range(ncols), range(nrows)):
+            # Skip cells that aren't paper
+            if map[col][row] != "@":
+                continue
+
+            # Count qty of adjacent paper rolls
+            adjacent_paper_count = 0
+            for col_ofs, row_ofs in itertools.product([-1, 0, 1], [-1, 0, 1]):
+                if (col_ofs, row_ofs) == (0, 0):
+                    continue
+                ncol, nrow = col + col_ofs, row + row_ofs
+                # Bounds checking
+                if ncol >= ncols or ncol < 0 or nrow >= nrows or nrow < 0:
+                    continue
+                adjacent_paper_count += int(map[ncol][nrow] == "@")
+                if adjacent_paper_count >= 4:
+                    break
+
+            # Was the paper forklift accessable?
+            if adjacent_paper_count < 4:
+                forklift_accessable_papers += 1
+                map[col][row] = "."
+
+    print("Number of rolls of paper accessable via forklift:", forklift_accessable_papers)
