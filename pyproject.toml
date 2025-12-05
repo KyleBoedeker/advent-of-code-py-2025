@@ -25,3 +25,8 @@ ignore = [
     "D212",  # Multi-line docstring summary should start at the first line
     "T201",  # allow print statements
 ]
+
+[dependency-groups]
+dev = [
+    "pyright>=1.1.407",
+]
