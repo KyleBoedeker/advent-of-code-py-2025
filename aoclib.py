@@ -39,13 +39,20 @@ def day01_part2(puzzle: str) -> None:
 def day02_part1(puzzle: str) -> None:
     sum_of_invalid_ids = 0
     for match in re.finditer(r"(\d+)-(\d+)", puzzle):
-        for num in range(int(match.group(1)), int(match.group(2)) + 1):
-            snum = str(num)
-            if len(snum) % 2 == 1:
-                continue
-            midpoint = len(snum) // 2
-            if snum[:midpoint] == snum[midpoint:]:
-                sum_of_invalid_ids += num
+        start = match.group(1)
+        # Must be at _least_ one digit for start half
+        half_pattern = start[:len(start) // 2] if len(start) > 1 else start
+        stop = match.group(2)
+        while True:
+            # Next pattern is beyond range
+            if int(half_pattern + half_pattern) > int(stop):
+                break
+            # Next pattern is within range
+            if int(start) <= int(half_pattern + half_pattern):
+                sum_of_invalid_ids += int(half_pattern + half_pattern)
+
+            # Calculate next pattern
+            half_pattern = str(int(half_pattern) + 1)
 
     print("Sum of invalid IDs is:", sum_of_invalid_ids)
 
