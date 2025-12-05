@@ -160,3 +160,23 @@ def day04_part2(puzzle: str) -> None:
                 map[col][row] = "."
 
     print("Number of rolls of paper accessable via forklift:", forklift_accessable_papers)
+
+
+def day05_part1(puzzle: str) -> None:
+    lines = iter(puzzle.splitlines())
+    ranges = []
+    for line in lines:
+        if m := re.match(r"(\d+)-(\d+)", line):
+            # Generate the ranges for inclusive matching (add one to end)
+            ranges.append(range(int(m.group(1)), int(m.group(2)) + 1))
+        else:
+            break  # empty line delineates input sections
+
+
+    num_fresh_ingredients = 0
+    # How many ingredients are in any of the ranges?
+    for line in lines:
+        if any(int(line) in r for r in ranges):
+            num_fresh_ingredients += 1
+
+    print("Number of fresh ingredients:", num_fresh_ingredients)
