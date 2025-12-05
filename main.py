@@ -41,6 +41,8 @@ def main(args: argparse.Namespace) -> None:
         aoclib.day04_part2(puzzle)
     elif args.day == "5" and args.part == "1":
         aoclib.day05_part1(puzzle)
+    elif args.day == "5" and args.part == "2":
+        aoclib.day05_part2(puzzle)
     else:
         print("unimplemented!", file=sys.stderr)
 
