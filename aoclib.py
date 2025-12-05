@@ -172,7 +172,6 @@ def day05_part1(puzzle: str) -> None:
         else:
             break  # empty line delineates input sections
 
-
     num_fresh_ingredients = 0
     # How many ingredients are in any of the ranges?
     for line in lines:
@@ -180,6 +179,7 @@ def day05_part1(puzzle: str) -> None:
             num_fresh_ingredients += 1
 
     print("Number of fresh ingredients:", num_fresh_ingredients)
+
 
 def day05_part2(puzzle: str) -> None:
     lines = iter(puzzle.splitlines())
