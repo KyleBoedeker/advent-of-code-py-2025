@@ -42,7 +42,7 @@ def day02_part1(puzzle: str) -> None:
     for match in re.finditer(r"(\d+)-(\d+)", puzzle):
         start = match.group(1)
         # Must be at _least_ one digit for start half
-        half_pattern = start[:len(start) // 2] if len(start) > 1 else start
+        half_pattern = start[: len(start) // 2] if len(start) > 1 else start
         stop = match.group(2)
         while True:
             # Next pattern is beyond range
