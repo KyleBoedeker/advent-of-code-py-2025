@@ -1,4 +1,5 @@
 import itertools
+import math
 import re
 
 
@@ -216,3 +217,31 @@ def day05_part2(puzzle: str) -> None:
 
     # Don't forget to add one for each range to account for inclusive ends on ranges
     print("Number of fresh ingredient IDs:", sum(len(r) for r in pruned_ranges) + len(pruned_ranges))
+
+
+def day06_part1(puzzle: str) -> None:
+    lines = iter(puzzle.splitlines())
+
+    # Abuse the fact the for loop will preserve this on last iter
+    line = ""
+    psets = []
+    for line_idx, line in enumerate(lines):
+        match_idx = None
+        for match_idx, match in enumerate(re.finditer(r"\d+", line)):
+            # Handle initializing the list of each column's values
+            if line_idx == 0:
+                psets.append([])
+            psets[match_idx].append(int(match[0]))
+
+        # No numbers were found on this line past here - must be the math operations
+        if match_idx is None:
+            break
+
+    sum_of_solutions = 0
+    for idx, op in enumerate(line.split()):
+        if op == "*":
+            sum_of_solutions += math.prod(psets[idx])
+        elif op == "+":
+            sum_of_solutions += sum(psets[idx])
+
+    print("Grand total (sum of solutions): ", sum_of_solutions)
