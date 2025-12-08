@@ -213,8 +213,6 @@ def day05_part2(puzzle: str) -> None:
     # Don't forget the final range
     pruned_ranges.append(range(cur_start, cur_stop))
 
-    print(pruned_ranges)
-
     # Don't forget to add one for each range to account for inclusive ends on ranges
     print("Number of fresh ingredient IDs:", sum(len(r) for r in pruned_ranges) + len(pruned_ranges))
 
