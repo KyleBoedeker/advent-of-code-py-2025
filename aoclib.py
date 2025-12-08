@@ -246,7 +246,31 @@ def day06_part1(puzzle: str) -> None:
 
 
 def day06_part2(puzzle: str) -> None:
-    raise NotImplementedError("not implemented")
+    lines = puzzle.splitlines()
+
+    ops = [c for c in lines[-1] if c in ["+", "*"]]
+
+    # Build up offsets for start of a single math problem
+    offsets = [idx for idx, c in enumerate(lines[-1]) if c in ["+", "*"]]
+    # Append a final offset to get the rightmost number
+    # Note: I'm uusing max to avoid strip-trailing-whitespace-on-save issue
+    offsets.append(max(len(line) for line in lines) + 1)
+
+    sum_of_solutions = 0
+
+    # Column offsets for each puzzle
+    for op, (start, end) in zip(ops, itertools.pairwise(offsets)):
+        # Numbers are vertical - some questionable logic here:
+        nums = []
+        for col in range(start, end - 1):
+            num = int("".join([l[col] for l in lines[:-1] if l[col] != " "]))
+            nums.append(num)
+        if op == "*":
+            sum_of_solutions += math.prod(nums)
+        elif op == "+":
+            sum_of_solutions += sum(nums)
+
+    print("Grand total (sum of solutions): ", sum_of_solutions)
 
 
 def day07_part1(puzzle: str) -> None:
