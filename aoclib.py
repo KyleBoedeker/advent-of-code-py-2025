@@ -1,3 +1,4 @@
+import copy
 import itertools
 import math
 import re
@@ -291,7 +292,23 @@ def day07_part1(puzzle: str) -> None:
 
 
 def day07_part2(puzzle: str) -> None:
-    raise NotImplementedError("not implemented")
+    beam_counts = []
+    for line_idx, line in enumerate(puzzle.splitlines()):
+        if line_idx == 0:
+            beam_counts = [0] * len(line)
+            beam_counts[line.index("S")] = 1
+            continue
+
+        new_beam_counts = copy.copy(beam_counts)
+
+        for idx, c in enumerate(line):
+            if c == "^" and beam_counts[idx] >= 1:
+                new_beam_counts[idx] = 0
+                new_beam_counts[idx - 1] += beam_counts[idx]
+                new_beam_counts[idx + 1] += beam_counts[idx]
+        beam_counts = new_beam_counts
+
+    print("The beam will be split this many times:", sum(beam_counts))
 
 
 def day08_part1(puzzle: str) -> None:
