@@ -245,3 +245,55 @@ def day06_part1(puzzle: str) -> None:
             sum_of_solutions += sum(psets[idx])
 
     print("Grand total (sum of solutions): ", sum_of_solutions)
+
+
+def day06_part2(puzzle: str) -> None:
+    raise NotImplementedError("not implemented")
+
+
+def day07_part1(puzzle: str) -> None:
+    raise NotImplementedError("not implemented")
+
+
+def day07_part2(puzzle: str) -> None:
+    raise NotImplementedError("not implemented")
+
+
+def day08_part1(puzzle: str) -> None:
+    raise NotImplementedError("not implemented")
+
+
+def day08_part2(puzzle: str) -> None:
+    raise NotImplementedError("not implemented")
+
+
+def day09_part1(puzzle: str) -> None:
+    raise NotImplementedError("not implemented")
+
+
+def day09_part2(puzzle: str) -> None:
+    raise NotImplementedError("not implemented")
+
+
+def day10_part1(puzzle: str) -> None:
+    raise NotImplementedError("not implemented")
+
+
+def day10_part2(puzzle: str) -> None:
+    raise NotImplementedError("not implemented")
+
+
+def day11_part1(puzzle: str) -> None:
+    raise NotImplementedError("not implemented")
+
+
+def day11_part2(puzzle: str) -> None:
+    raise NotImplementedError("not implemented")
+
+
+def day12_part1(puzzle: str) -> None:
+    raise NotImplementedError("not implemented")
+
+
+def day12_part2(puzzle: str) -> None:
+    raise NotImplementedError("not implemented")

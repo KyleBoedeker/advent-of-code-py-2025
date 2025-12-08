@@ -23,29 +23,38 @@ def main(args: argparse.Namespace) -> None:
 
     t_start = time.time()
 
-    if args.day == "1" and args.part == "1":
-        aoclib.day01_part1(puzzle)
-    elif args.day == "1" and args.part == "2":
-        aoclib.day01_part2(puzzle)
-    elif args.day == "2" and args.part == "1":
-        aoclib.day02_part1(puzzle)
-    elif args.day == "2" and args.part == "2":
-        aoclib.day02_part2(puzzle)
-    elif args.day == "3" and args.part == "1":
-        aoclib.day03_part1(puzzle)
-    elif args.day == "3" and args.part == "2":
-        aoclib.day03_part2(puzzle)
-    elif args.day == "4" and args.part == "1":
-        aoclib.day04_part1(puzzle)
-    elif args.day == "4" and args.part == "2":
-        aoclib.day04_part2(puzzle)
-    elif args.day == "5" and args.part == "1":
-        aoclib.day05_part1(puzzle)
-    elif args.day == "5" and args.part == "2":
-        aoclib.day05_part2(puzzle)
-    elif args.day == "6" and args.part == "1":
-        aoclib.day06_part1(puzzle)
-    else:
+    try:
+        sol = {
+            "d01_p1": aoclib.day01_part1,
+            "d01_p2": aoclib.day01_part2,
+            "d02_p1": aoclib.day02_part1,
+            "d02_p2": aoclib.day02_part2,
+            "d03_p1": aoclib.day03_part1,
+            "d03_p2": aoclib.day03_part2,
+            "d04_p1": aoclib.day04_part1,
+            "d04_p2": aoclib.day04_part2,
+            "d05_p1": aoclib.day05_part1,
+            "d05_p2": aoclib.day05_part2,
+            "d06_p1": aoclib.day06_part1,
+            "d06_p2": aoclib.day06_part2,
+            "d07_p1": aoclib.day07_part1,
+            "d07_p2": aoclib.day07_part2,
+            "d08_p1": aoclib.day08_part1,
+            "d08_p2": aoclib.day08_part2,
+            "d09_p1": aoclib.day09_part1,
+            "d09_p2": aoclib.day09_part2,
+            "d10_p1": aoclib.day10_part1,
+            "d10_p2": aoclib.day10_part2,
+            "d11_p1": aoclib.day11_part1,
+            "d11_p2": aoclib.day11_part2,
+            "d12_p1": aoclib.day12_part1,
+            "d12_p2": aoclib.day12_part2,
+        }[f"d{int(args.day):02d}_p{args.part}"]
+
+        sol(puzzle)
+
+    except KeyError:
+        print(f"d{int(args.day):02d}p{args.part}")
         print("unimplemented!", file=sys.stderr)
 
     if args.profile:
