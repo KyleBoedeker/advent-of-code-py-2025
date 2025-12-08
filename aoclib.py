@@ -274,7 +274,20 @@ def day06_part2(puzzle: str) -> None:
 
 
 def day07_part1(puzzle: str) -> None:
-    raise NotImplementedError("not implemented")
+    splitters_hit = 0
+    beam_positions = set()
+    for line_idx, line in enumerate(puzzle.splitlines()):
+        if line_idx == 0:
+            beam_positions.add(line.index("S"))
+            continue
+
+        for idx, c in enumerate(line):
+            if c == "^" and idx in beam_positions:
+                splitters_hit += 1
+                beam_positions.remove(idx)
+                beam_positions.update([idx - 1, idx + 1])
+
+    print("The beam will be split this many times:", splitters_hit)
 
 
 def day07_part2(puzzle: str) -> None:
