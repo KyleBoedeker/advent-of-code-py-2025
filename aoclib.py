@@ -312,7 +312,19 @@ def day07_part2(puzzle: str) -> None:
 
 
 def day08_part1(puzzle: str) -> None:
-    raise NotImplementedError("not implemented")
+    boxes = []
+    for line in puzzle.splitlines():
+        if m := re.match(r"(\d+),(\d+),(\d+)", line):
+            boxes.append((int(m[1]), int(m[2]), int(m[3])))
+
+    boxthings = []
+    for idx, (b1, b2) in enumerate(itertools.combinations(boxes, 2)):
+        sos = (b2[0] - b1[0]) ** 2 + (b2[1] - b1[1]) ** 2 + (b2[2] - b1[2]) ** 2
+        boxthings.append((sos, b1, b2))
+        if idx % 1000 == 0:
+            boxthings = sorted(boxthings, key=lambda s: s[0])[:1000]
+    boxthings = sorted(boxthings, key=lambda s: s[0])[:1000]
+    # print(boxthings)
 
 
 def day08_part2(puzzle: str) -> None:
