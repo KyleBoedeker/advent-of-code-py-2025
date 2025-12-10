@@ -312,7 +312,38 @@ def day07_part2(puzzle: str) -> None:
 
 
 def day08_part1(puzzle: str) -> None:
-    raise NotImplementedError("not implemented")
+    boxes = []
+    for line in puzzle.splitlines():
+        if m := re.match(r"(\d+),(\d+),(\d+)", line):
+            boxes.append((int(m[1]), int(m[2]), int(m[3])))
+
+    dist_boxes = []
+    for idx, (b1, b2) in enumerate(itertools.combinations(boxes, 2)):
+        sos = (b2[0] - b1[0]) ** 2 + (b2[1] - b1[1]) ** 2 + (b2[2] - b1[2]) ** 2
+        dist_boxes.append((sos, b1, b2))
+        # if idx % 1000 == 0:
+        #     dist_boxes = sorted(dist_boxes, key=lambda s: s[0])[:1000]
+
+    # Truncate off the last 100 box pairs
+    dist_boxes = sorted(dist_boxes, key=lambda s: s[0])[0:2]
+
+    circuits = {}
+    for idx, (_dist, box1, box2) in enumerate(dist_boxes):
+        if circuits.get(box1) and circuits.get(box2):
+            newidx = min(circuits[box1], circuits[box2])
+        elif circuits.get(box1):
+            newIdx = circuits[box1]
+        elif circuits.get(box2):
+            newidx = circuits[box2]
+        else:
+            newidx = idx
+        circuits[box1] = circuits[box2] = newidx
+
+    # print(circuits)
+    for idx, cir in circuits.items():
+        print(idx, cir)
+
+    # print(boxthings)
 
 
 def day08_part2(puzzle: str) -> None:
